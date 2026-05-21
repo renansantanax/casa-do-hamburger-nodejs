@@ -3,6 +3,7 @@ import Login from "./pages/Login.tsx";
 import Register from "./pages/Register.tsx";
 import Home from "./pages/Home.tsx";
 import Layout from "./components/Layout.tsx";
+import Pedidos from "./pages/Pedidos.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -11,6 +12,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/pedidos",
+        element: <Pedidos />,
       },
     ],
   },

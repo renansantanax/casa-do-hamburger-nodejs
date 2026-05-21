@@ -3,11 +3,15 @@ import Input from "../components/Input";
 import { useState } from "react";
 import Button from "../components/Button";
 import { useNavigate } from "react-router";
+import { UserContext } from "../contexts/UserContext";
+import { useContext } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const { setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -23,6 +27,7 @@ const Login = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
+        credentials: "include",
       });
 
       if (response.status === 400) {
@@ -44,7 +49,7 @@ const Login = () => {
         setError("");
         const json = await response.json();
         navigate("/");
-        console.log(json);
+        setUser(json);
       }
     } catch (error) {
       console.error("Erro ao fazer login:", error);
